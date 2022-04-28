@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>ICS Retention Prediction:RESULT</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %} ">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&amp;display=swap">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/Features-Boxed.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/Highlight-Clean.css' %} ">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="{% static 'css/untitled.css' %} ">
+    
+    <!--for datatable-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.bootstrap4.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+    
+    <style>
+        /* Center the loader */
+        #loader {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          z-index: 1;
+          width: 120px;
+          height: 120px;
+          margin: -76px 0 0 -76px;
+          border: 16px solid #f3f3f3;
+          border-radius: 50%;
+          border-top: 16px solid #3498db;
+          border-bottom: 16px solid #3498db;
+          -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+        }
+        
+        @-webkit-keyframes spin {
+          0% { -webkit-transform: rotate(0deg); }
+          100% { -webkit-transform: rotate(360deg); }
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        
+        /* Add animation to "page content" */
+        .animate-bottom {
+          position: relative;
+          -webkit-animation-name: animatebottom;
+          -webkit-animation-duration: 1s;
+          animation-name: animatebottom;
+          animation-duration: 1s
+        }
+        
+        @-webkit-keyframes animatebottom {
+          from { bottom:-100px; opacity:0 } 
+          to { bottom:0px; opacity:1 }
+        }
+        
+        @keyframes animatebottom { 
+          from{ bottom:-100px; opacity:0 } 
+          to{ bottom:0; opacity:1 }
+        }
+        
+        #myDiv {
+          display: none;
+          text-align: center;
+        }
+    </style>
+</head>
+
+<body onload="myFunction()" style="margin:0;">
+
+    
+
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark navbar-custom">
+        <div class="container"><img class="img-fluid" src="{% static 'img/ICS.png' %} " loading="auto" style="width: 51px;margin-right: 10px;"><a class="navbar-brand" href="{% url 'index' %} "><strong>ICS Retention Prediction</strong><br></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarResponsive-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive-2">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#" style="font-size: 16PX;">RESULT<br></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header style="background: rgba(239,34,34,0);height: 685px;">
+        <div style="height: 83px;"></div>
+        <div class="d-lg-flex d-xl-flex justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-start" style="height: 900px;background: #ffffff;">
+            <div class="container" style="margin-top: 30px;">
+
+                <div class="row" style="margin-bottom: 30px;">
+                    <div class="col"><a class="btn btn-primary" style="background-color: #ee0979; border-color:#ee0979" role="button" href="{% url 'index' %}"><i class="fa fa-arrow-circle-left" style="font-size: 35px;"></i></a></div>
+                    <div class="col"></div>
+                </div>
+
+    <div id="loader"></div>
+    <div style="display:none;" id="myDiv" class="animate-bottom">   
+
+                    {% if student1.result == 1 %}
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="intro">
+                                        <h2 class="text-center" style="font-family: Poppins, sans-serif;font-size: 30px;color: var(--bs-gray-dark);margin-bottom: 60px;">Retention Prediction Result for: "{{student1.idNumber}}"</h2>
+                                        <p class="text-center" style="font-size: 25px;color: #60c659;"><strong>It looks like the possibility of student retention is high</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <section class="features-boxed">
+                                        <div class="container" style="background: #ffffff;">
+                                            <div class="row justify-content-center features" style="background: #ffffff;">
+                                                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                                                    <div class="box"><i class="fa fa-pencil-square-o icon" data-bss-hover-animate="jello"></i>
+                                                        <h3 class="name" style="font-family: Poppins, sans-serif;"><strong>Encourage Learners to Use Their Newly Acquired Information</strong><br></h3>
+                                                        <p class="description" style="text-align: justify;">We can encourage learners to use their newly acquired information in other ways. A great example of this is Blended Learning. After the eLearning portion of the course is complete, a video call or face-to-face meeting can be used to share what they've learned, ask follow-up questions, and role-play scenarios. This will not only encourage learners to pay attention to the previous part of the course, but it will help them recall information, build on their knowledge with others, and ask about aspects that they may not understand fully.<br></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                                                    <div class="box"><i class="fa fa-gears icon" data-bss-hover-animate="wobble"></i>
+                                                        <h3 class="name" style="font-family: Poppins, sans-serif;"><strong>Make Learning Innovative and Interesting</strong><br></h3>
+                                                        <p class="description" style="text-align: justify;">When students are content with the educational environment, the focus on their studies increases. Make things easier for them by uploading syllabus, assignment and lesson plans, and relevant content directly in the learning management system. This way students' accessibility to the course content becomes easier and they feel contented and motivated to study. Reporting and analytics can help identify the areas students face difficulties and overcome them. This can improve their success ratio and build student retention.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                                                    <div class="box"><i class="fa fa-group icon" data-bss-hover-animate="bounce"></i>
+                                                        <h3 class="name" style="font-family: Poppins, sans-serif;"><strong>Build Community &amp; A Sense of Belonging</strong><br></h3>
+                                                        <p class="description" style="text-align: justify;">For many students, large school domain can mean getting lost rather than finding their path. Accordingly, it’s critically important to focus on personalizing learning, building campus community and cultivating a sense of belonging for all students, especially those at risk for dropping out, as part of your strategy to increase graduation rates.&nbsp;<br>Establishing community both in and out of the classroom helps build a strong network for students and supports good study habits to improve academic performance.<br></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% else %}
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="intro">
+                                        <h2 class="text-center" style="font-family: Poppins, sans-serif;font-size: 30px;color: var(--bs-gray-dark);margin-bottom: 60px;">Retention Prediction Result for: "{{student1.idNumber}}"</h2>
+                                        <p class="text-center" style="font-size: 25px;color: #f94040;"><strong>It seems that the student will likely fail the course</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <section class="features-boxed">
+                                        <div class="container" style="background: #ffffff;">
+                                            <div class="row justify-content-center features" style="background: #ffffff;">
+                                                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                                                    <div class="box"><i class="fa fa-slideshare icon" data-bss-hover-animate="swing"></i>
+                                                        <h3 class="name" style="font-family: Poppins, sans-serif;"><strong>Cultivate Relationships with Advisors, Staff and Faculty</strong><br></h3>
+                                                        <p class="description" style="text-align: justify;">Many students do not reach out to staff or faculty members for assistance with academic or social needs (or don’t know how to reach the right people), which can leave them feeling isolated, but receiving support and guidance from a professor or advisor can mean the difference between a student learning to navigate through obstacles or giving up and dropping out.&nbsp; &nbsp; &nbsp; &nbsp; Connect students with a strong mentoring program in which they can learn important life skills and know how and where to ask questions so they can easily reach out for help when needed.<br></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                                                    <div class="box"><i class="fa fa-handshake-o icon" data-bss-hover-animate="pulse"></i>
+                                                        <h3 class="name" style="font-family: Poppins, sans-serif;"><strong>Implement Intervention Processes</strong><br></h3>
+                                                        <p class="description" style="text-align: justify;">Early intervention is key in helping to retain students. Once you have identified at-risk students, teachers, staff and families may work together to help students turn things around. Developing an ongoing assessment and intervention plan to identify and equip these students with increased support and services is one of the most efficient ways to increase student retention.&nbsp;<br>Academic advisors and faculty can reach out to students experiencing academic, personal, financial or social issues. Through these early interventions, faculty and advisors also begin to build relationships and trust with their students. Sometimes, that relationship can make all the difference in a student's decision to stay or go.<br></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                                                    <div class="box"><i class="fa fa-comments-o icon" data-bss-hover-animate="rubberBand"></i>
+                                                        <h3 class="name" style="font-family: Poppins, sans-serif;">Use Communication Tools to Check In and Follow Up With Students In Need<br></h3>
+                                                        <p class="description" style="text-align: justify;">Utilize email marketing software with tracking metrics to see who is opening and clicking your email content, send out reminders and check-ins with push notifications, use a community feed for discussions and resource sharing, and assign checklists of tasks to guide students on a path to success with action items they must complete. Consider incentivizing task completion with prizes, giveaways or virtual badges.<br></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endif %}
+
+                    <div class="row d-xl-flex" style="margin-bottom: 150px;">
+                        <div class="col">
+                            <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID No.</th>
+                                        <th>CC105</th>
+                                        <th>CS131</th>
+                                        <th>CS135</th>
+                                        <th>CS137</th>
+                                        <th>result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{student1.idNumber}}</td>
+                                        <td>{{student1.CC105}}</td>
+                                        <td>{{student1.CS131}}</td>
+                                        <td>{{student1.CS135}}</td>
+                                        <td>{{student1.CS137}}</td>
+                                        {% if student1.result == 1 %}
+                                            <td>1</td>
+                                        {% else %}
+                                            <td>0</td>
+                                        {%endif%}
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+                <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+                <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+                <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.bootstrap4.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+                <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+                <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+                <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+                <script>
+                    $(document).ready(function() {
+                        var table = $('#example').DataTable( {
+                            lengthChange: false,
+                            buttons: [ 'copy', 'excel', 'csv', 'pdf' ]
+                        } );
+                    
+                        table.buttons().container()
+                            .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+                    } );
+                </script>
+
+            </div>
+        </header>
+
+    </div>
+
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %} "></script>
+    <script src="{% static 'js/bs-init.js' %} "></script>
+
+    <script>
+        var myVar;
+        
+        function myFunction() {
+          myVar = setTimeout(showPage, 3000);
+        }
+        
+        function showPage() {
+          document.getElementById("loader").style.display = "none";
+          document.getElementById("myDiv").style.display = "block";
+        }
+    </script>
+
+</body>
+
+</html>
